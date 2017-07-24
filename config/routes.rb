@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :insts, only: [:index, :new, :create, :edit, :destroy, :update]
 
   root 'top#index'

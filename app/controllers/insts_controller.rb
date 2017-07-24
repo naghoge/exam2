@@ -1,4 +1,5 @@
 class InstsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @insts = Inst.all
   end
@@ -9,6 +10,8 @@ class InstsController < ApplicationController
   
   def create
     Inst.create(insts_params)
+    @inst.user_id = current_user.id
+    @inst.save
     goindex
   end
   
