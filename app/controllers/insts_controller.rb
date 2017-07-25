@@ -9,9 +9,10 @@ class InstsController < ApplicationController
   end
   
   def create
-    Inst.create(insts_params)
+    @inst = Inst.new(insts_params)
     @inst.user_id = current_user.id
     @inst.save
+    NoticeMailer.sendmail_inst(@inst).deliver
     goindex
   end
   
